@@ -1,40 +1,51 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SharkController : MonoBehaviour {
 
     private Camera mainCamera;
-    private Transform controller;
-    private Quaternion previousRotation;
-    private float rotationsPerSec;
+    [SerializeField]
+    private float avgTime = 0.5f;
+    private float totalVel = 0;
+    private float AvgVel {
+        get { return totalVel / runningCount.Count; }
+    }
     private Queue<FrameRotation> runningCount = new Queue<FrameRotation>();
+
+    public Slider debugVelocity;
 
     void Start() {
         mainCamera = Camera.main;
-        previousRotation = controller.rotation;
     }
 
     private void Update() {
-        OVRInput.Controller activeController = OVRInput.GetActiveController();
-        Vector3 angVel = OVRInput.GetLocalControllerAngularVelocity(activeController);
-        data.AppendFormat("AngVel: ({0:F2}, {1:F2}, {2:F2})\n", angVel.x, angVel.y, angVel.z);
-        //rotationsPerSeccontroller.rotation
-        runningCount.Enqueue(new FrameRotation(Quaternion.Angle(controller.rotation, previousRotation)));
-        previousRotation = controller.rotation;
+        UpdateAverageVelocity();
+        debugVelocity.value = AvgVel;
     }
 
     void FixedUpdate() {
 
     }
 
+    private void UpdateAverageVelocity() {
+        while (runningCount.Count > 0 && runningCount.Peek().Time <= Time.time - avgTime) {
+            totalVel -= runningCount.Dequeue().Velocity;
+        }
+        OVRInput.Controller activeController = OVRInput.GetActiveController();
+        float angVelMagnitude = OVRInput.GetLocalControllerAngularVelocity(activeController).magnitude * Mathf.Rad2Deg;
+        totalVel += angVelMagnitude;
+        runningCount.Enqueue(new FrameRotation(angVelMagnitude));
+    }
+
     private class FrameRotation {
         public float Time;
-        public float Angle;
+        public float Velocity;
 
-        public FrameRotation (float angle) {
+        public FrameRotation (float velocity) {
             Time = UnityEngine.Time.time;
-            Angle = angle;
+            Velocity = velocity;
         }
     }
 }
