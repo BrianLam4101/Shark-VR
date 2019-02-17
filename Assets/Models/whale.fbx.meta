@@ -10,6 +10,14 @@ ModelImporter:
     100008: node_id4
     100010: node_id6
     100012: node_id7
+    100014: node_id10
+    100016: node_id11
+    100018: node_id12
+    100020: node_id13
+    100022: node_id15
+    100024: node_id5
+    100026: node_id8
+    100028: node_id9
     400000: Camera
     400002: Cube
     400004: Lamp
@@ -17,18 +25,30 @@ ModelImporter:
     400008: node_id4
     400010: node_id6
     400012: node_id7
+    400014: node_id10
+    400016: node_id11
+    400018: node_id12
+    400020: node_id13
+    400022: node_id15
+    400024: node_id5
+    400026: node_id8
+    400028: node_id9
     2000000: Camera
     2100000: Material
     2100002: Material_84
+    2100004: Material_50
     2300000: Cube
     2300002: node_id4
     2300004: //RootNode
+    2300006: node_id13
     3300000: Cube
     3300002: node_id4
     3300004: //RootNode
+    3300006: node_id13
     4300000: Cube
     4300002: node_id4
     4300004: whale
+    4300006: node_id13
     10800000: Lamp
     2186277476908879412: ImportLogs
   externalObjects:
@@ -70,7 +90,6 @@ ModelImporter:
     globalScale: 1
     meshCompression: 0
     addColliders: 0
-    useSRGBMaterialColor: 1
     importVisibility: 1
     importBlendShapes: 1
     importCameras: 1
@@ -95,9 +114,6 @@ ModelImporter:
     normalImportMode: 0
     tangentImportMode: 3
     normalCalculationMode: 4
-    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
-    blendShapeNormalImportMode: 1
-    normalSmoothingSource: 0
   importAnimation: 1
   copyAvatar: 0
   humanDescription:

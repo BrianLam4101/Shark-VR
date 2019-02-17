@@ -22,12 +22,17 @@ public class SharkController : MonoBehaviour {
     [SerializeField]
     private float DashCoolDown = 0.25f;
     private float dashCoolDownTimer = 0;
+    private float dashMultiplier = 2;
     private bool dashing = false;
 
     private bool isHurt = false;
+    [SerializeField]
+    private Animator HurtAnimator;
 
     [SerializeField]
     private Animator BiteAnimator;
+    [SerializeField]
+    private ParticleSystem SpeedLines;
 
     public Slider debugVelocity;
 
@@ -73,8 +78,10 @@ public class SharkController : MonoBehaviour {
         dashing = true;
         BiteAnimator.Play("Bite");
         float initSpeed = speed;
-        speed *= 1.5f;
+        speed *= dashMultiplier;
         speed += 15;
+        yield return null;
+        SpeedLines.Play();
         yield return new WaitForSeconds(0.15f);
         float velocity = 0;
         float timer = 0.05f;
@@ -85,6 +92,8 @@ public class SharkController : MonoBehaviour {
         }
         speed = initSpeed;
         dashing = false;
+        yield return new WaitForSeconds(0.1f);
+        SpeedLines.Stop();
     }
 
     public void Hurt() {
@@ -92,6 +101,7 @@ public class SharkController : MonoBehaviour {
         speed *= 0.75f;
         speed += 10;
         StartCoroutine(HurtDelay());
+        HurtAnimator.Play("Hurt");
     }
 
     private IEnumerator HurtDelay() {
