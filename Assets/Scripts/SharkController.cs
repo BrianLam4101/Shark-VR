@@ -19,9 +19,12 @@ public class SharkController : MonoBehaviour {
     private float speed;
 
     [SerializeField]
-    private float DashCoolDown = 0.2f;
+    private float DashCoolDown = 0.25f;
     private float dashCoolDownTimer = 0;
     private bool dashing = false;
+
+    [SerializeField]
+    private Animator BiteAnimator;
 
     public Slider debugVelocity;
 
@@ -60,6 +63,7 @@ public class SharkController : MonoBehaviour {
 
     private IEnumerator Dash() {
         dashing = true;
+        BiteAnimator.Play("Bite");
         float initSpeed = speed;
         speed *= 1.5f;
         speed += 15;
