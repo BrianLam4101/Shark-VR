@@ -5,18 +5,176 @@ ModelImporter:
   fileIDToRecycleName:
     100000: //RootNode
     100002: node_id5
+    100004: node_id10
+    100006: node_id11
+    100008: node_id12
+    100010: node_id13
+    100012: node_id14
+    100014: node_id15
+    100016: node_id16
+    100018: node_id17
+    100020: node_id18
+    100022: node_id19
+    100024: node_id20
+    100026: node_id21
+    100028: node_id22
+    100030: node_id23
+    100032: node_id24
+    100034: node_id25
+    100036: node_id26
+    100038: node_id27
+    100040: node_id28
+    100042: node_id29
+    100044: node_id30
+    100046: node_id31
+    100048: node_id32
+    100050: node_id33
+    100052: node_id34
+    100054: node_id35
+    100056: node_id36
+    100058: node_id37
+    100060: node_id38
+    100062: node_id39
+    100064: node_id4
+    100066: node_id40
+    100068: node_id41
+    100070: node_id42
+    100072: node_id43
+    100074: node_id44
+    100076: node_id45
+    100078: node_id46
+    100080: node_id47
+    100082: node_id48
+    100084: node_id49
+    100086: node_id50
+    100088: node_id51
+    100090: node_id52
+    100092: node_id53
+    100094: node_id54
+    100096: node_id55
+    100098: node_id56
+    100100: node_id57
+    100102: node_id58
+    100104: node_id59
+    100106: node_id6
+    100108: node_id60
+    100110: node_id61
+    100112: node_id62
+    100114: node_id63
+    100116: node_id64
+    100118: node_id65
+    100120: node_id66
+    100122: node_id67
+    100124: node_id68
+    100126: node_id69
+    100128: node_id7
+    100130: node_id70
+    100132: node_id71
+    100134: node_id72
+    100136: node_id73
+    100138: node_id74
+    100140: node_id75
+    100142: node_id76
+    100144: node_id77
+    100146: node_id78
+    100148: node_id79
+    100150: node_id8
+    100152: node_id80
+    100154: node_id82
+    100156: node_id9
     400000: //RootNode
     400002: node_id5
+    400004: node_id10
+    400006: node_id11
+    400008: node_id12
+    400010: node_id13
+    400012: node_id14
+    400014: node_id15
+    400016: node_id16
+    400018: node_id17
+    400020: node_id18
+    400022: node_id19
+    400024: node_id20
+    400026: node_id21
+    400028: node_id22
+    400030: node_id23
+    400032: node_id24
+    400034: node_id25
+    400036: node_id26
+    400038: node_id27
+    400040: node_id28
+    400042: node_id29
+    400044: node_id30
+    400046: node_id31
+    400048: node_id32
+    400050: node_id33
+    400052: node_id34
+    400054: node_id35
+    400056: node_id36
+    400058: node_id37
+    400060: node_id38
+    400062: node_id39
+    400064: node_id4
+    400066: node_id40
+    400068: node_id41
+    400070: node_id42
+    400072: node_id43
+    400074: node_id44
+    400076: node_id45
+    400078: node_id46
+    400080: node_id47
+    400082: node_id48
+    400084: node_id49
+    400086: node_id50
+    400088: node_id51
+    400090: node_id52
+    400092: node_id53
+    400094: node_id54
+    400096: node_id55
+    400098: node_id56
+    400100: node_id57
+    400102: node_id58
+    400104: node_id59
+    400106: node_id6
+    400108: node_id60
+    400110: node_id61
+    400112: node_id62
+    400114: node_id63
+    400116: node_id64
+    400118: node_id65
+    400120: node_id66
+    400122: node_id67
+    400124: node_id68
+    400126: node_id69
+    400128: node_id7
+    400130: node_id70
+    400132: node_id71
+    400134: node_id72
+    400136: node_id73
+    400138: node_id74
+    400140: node_id75
+    400142: node_id76
+    400144: node_id77
+    400146: node_id78
+    400148: node_id79
+    400150: node_id8
+    400152: node_id80
+    400154: node_id82
+    400156: node_id9
     2100000: lambert1
     2100002: Material_60
+    2100004: Material_70
     2300000: //RootNode
     2300002: node_id5
+    2300004: node_id80
     3300000: //RootNode
     3300002: node_id5
+    3300004: node_id80
     4300000: polySurface2
     4300002: polySurface3
     4300004: node_id5
     4300006: nemo
+    4300008: node_id80
     2186277476908879412: ImportLogs
   externalObjects:
   - first:
@@ -62,7 +220,6 @@ ModelImporter:
     globalScale: 1
     meshCompression: 0
     addColliders: 0
-    useSRGBMaterialColor: 1
     importVisibility: 1
     importBlendShapes: 1
     importCameras: 1
@@ -87,9 +244,6 @@ ModelImporter:
     normalImportMode: 0
     tangentImportMode: 3
     normalCalculationMode: 4
-    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
-    blendShapeNormalImportMode: 1
-    normalSmoothingSource: 0
   importAnimation: 1
   copyAvatar: 0
   humanDescription:
