@@ -55,7 +55,7 @@ public class SharkController : MonoBehaviour {
         mainCamera = Camera.main;
         rigidbody = GetComponent<Rigidbody>();
         instance = this;
-        StartCoroutine(updateScore());
+        //StartCoroutine(updateScore());
         music.loop = true;
         music.Play(0);
     }
@@ -164,8 +164,8 @@ public class SharkController : MonoBehaviour {
     }
 
     public void OnBite(int score) {
-        score += score;
-        scoreText.text = "Score: " + score.ToString();
+        this.score += score;
+        scoreText.text = "Score: " + this.score.ToString();
     }
 
     private class FrameRotation {
