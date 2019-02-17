@@ -17,11 +17,14 @@ public class SharkController : MonoBehaviour {
     [SerializeField]
     private float anglesPerUnit = 90;
     private float speed;
+    private Vector3 direction;
 
     [SerializeField]
     private float DashCoolDown = 0.25f;
     private float dashCoolDownTimer = 0;
     private bool dashing = false;
+
+    private bool isHurt = false;
 
     [SerializeField]
     private Animator BiteAnimator;
@@ -37,8 +40,11 @@ public class SharkController : MonoBehaviour {
         UpdateAverageVelocity();
         debugVelocity.value = AvgVel;
 
-        if (!dashing)
-            speed = AvgVel / anglesPerUnit;
+        if (!isHurt) {
+            if (!dashing)
+                speed = AvgVel / anglesPerUnit;
+            direction = mainCamera.transform.forward;
+        }
 
         if (dashCoolDownTimer <= 0 && OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger)) {
             StartCoroutine(Dash());
@@ -48,17 +54,19 @@ public class SharkController : MonoBehaviour {
     }
 
     void FixedUpdate() {
-        rigidbody.velocity = mainCamera.transform.forward * speed;
+        rigidbody.velocity = direction * speed;
     }
 
     private void UpdateAverageVelocity() {
         while (runningCount.Count > 0 && runningCount.Peek().Time <= Time.time - avgTime) {
             totalVel -= runningCount.Dequeue().Velocity;
         }
-        OVRInput.Controller activeController = OVRInput.GetActiveController();
-        float angVelMagnitude = OVRInput.GetLocalControllerAngularVelocity(activeController).magnitude * Mathf.Rad2Deg;
-        totalVel += angVelMagnitude;
-        runningCount.Enqueue(new FrameRotation(angVelMagnitude));
+        if (!isHurt) {
+            OVRInput.Controller activeController = OVRInput.GetActiveController();
+            float angVelMagnitude = OVRInput.GetLocalControllerAngularVelocity(activeController).magnitude * Mathf.Rad2Deg;
+            totalVel += angVelMagnitude;
+            runningCount.Enqueue(new FrameRotation(angVelMagnitude));
+        }
     }
 
     private IEnumerator Dash() {
@@ -77,6 +85,25 @@ public class SharkController : MonoBehaviour {
         }
         speed = initSpeed;
         dashing = false;
+    }
+
+    public void Hurt() {
+        direction = -mainCamera.transform.forward;
+        speed *= 0.75f;
+        speed += 10;
+        StartCoroutine(HurtDelay());
+    }
+
+    private IEnumerator HurtDelay() {
+        isHurt = true;
+        float velocity = 0;
+        float timer = 0.5f;
+        while (timer > 0) {
+            speed = Mathf.SmoothDamp(speed, 0, ref velocity, 0.5f);
+            timer -= Time.fixedDeltaTime;
+            yield return new WaitForFixedUpdate();
+        }
+        isHurt = false;
     }
 
     public void OnBite(Collider other) {
