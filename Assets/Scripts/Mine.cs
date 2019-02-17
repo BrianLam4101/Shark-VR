@@ -20,14 +20,12 @@ public class Mine : MonoBehaviour {
     private void OnTriggerEnter(Collider other) {
         if (other.CompareTag("Player")) {
             other.GetComponent<SharkController>().Hurt();
+            GameObject.Instantiate<GameObject>(explosion, transform.position, Quaternion.identity);
+            Destroy(gameObject);
         }
-        GameObject.Instantiate<GameObject>(explosion, transform.position, Quaternion.identity);
-        Destroy(gameObject);
     }
 
     private void OnTriggerExit(Collider other) {
-        if (other.CompareTag("Outside")) {
-            Destroy(gameObject);
-        }
+        Destroy(gameObject);
     }
 }
