@@ -79,6 +79,10 @@ public class SharkController : MonoBehaviour {
         dashing = false;
     }
 
+    public void OnBite(Collider other) {
+
+    }
+
     private class FrameRotation {
         public float Time;
         public float Velocity;
