@@ -2,13 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Fish : MonoBehaviour {
+public class AggressiveFish : MonoBehaviour {
 
     [SerializeField]
     private bool isAggressive = true;
     private float changeDirectionCooldown = 0.0f;
-    private Vector3 newRandomDirection;
+    private Vector3 targetDirection;
     private bool keepChangingDirection = true;
+
+    public float chaseRadius = 10;
+    private float speed = 0;
 
 	// Use this for initialization
 	void Start () {
@@ -17,6 +20,8 @@ public class Fish : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        speed = Mathf.Min(speed + 1 * Time.deltaTime, 3);
+        transform.position += transform.forward * speed* Time.deltaTime;
 
         if (changeDirectionCooldown > 0)
         {
@@ -24,40 +29,34 @@ public class Fish : MonoBehaviour {
         }
         else
         {
-            newRandomDirection = Random.insideUnitSphere.normalized;
+            targetDirection = Random.insideUnitSphere.normalized;
             changeDirectionCooldown = 5.0f;
         }
 
-        if (newRandomDirection != null && keepChangingDirection)
+        if (Vector3.Distance(SharkController.instance.transform.position , transform.position) < chaseRadius) {
+            targetDirection = (SharkController.instance.transform.position - transform.position).normalized;
+            keepChangingDirection = false;
+        }
+
+        if (targetDirection != null && keepChangingDirection)
         {
-            transform.forward = Vector3.Slerp(transform.forward, newRandomDirection, 0.5f * Time.deltaTime);
+            transform.forward = Vector3.Slerp(transform.forward, targetDirection, 0.5f * Time.deltaTime);
         }
 
 	}
 
-    void OnTriggerStay(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            keepChangingDirection = false;
+    private void LateUpdate() {
+        transform.rotation = Quaternion.LookRotation(targetDirection, Vector3.up);
+    }
 
-            if (isAggressive)
-            {
-
-            }
-            else
-            {
-
-            }
+    private void OnTriggerEnter(Collider other) {
+        if (other.CompareTag("Player")) {
+            other.GetComponent<SharkController>().Hurt(transform.forward);
+            speed = -1;
         }
     }
 
-    void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            keepChangingDirection = true;
-        }
+    private void OnTriggerExit(Collider other) {
+        transform.position += SharkController.instance.mainCamera.transform.forward * 190;
     }
-
 }

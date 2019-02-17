@@ -57,6 +57,21 @@ ModelImporter:
       assembly: UnityEngine.CoreModule
       name: Material
     second: {fileID: 2100000, guid: c53abe02f254f1b40a660c084ea4c559, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material_50
+    second: {fileID: 2100000, guid: 26e68559b8741e04aa5e46fe373d93f9, type: 2}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: 143
+    second: {fileID: 2800000, guid: cc82a3b9ad5218f4db5eddc170d95f07, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: 147
+    second: {fileID: 2800000, guid: 62beb4b466b477c4b9db9884c913d49d, type: 3}
   materials:
     importMaterials: 1
     materialName: 0

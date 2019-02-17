@@ -136,6 +136,16 @@ public class SharkController : MonoBehaviour {
             Application.Quit();
     }
 
+    public void Hurt(Vector3 hitDirection) {
+        direction = hitDirection;
+        speed = 15;
+        StartCoroutine(HurtDelay());
+        HurtAnimator.Play("Hurt");
+        health -= 10;
+        if (health <= 0)
+            Application.Quit();
+    }
+
     private IEnumerator HurtDelay() {
         isHurt = true;
         float velocity = 0;
@@ -150,6 +160,11 @@ public class SharkController : MonoBehaviour {
 
     public void OnBite(Collider other) {
         score += 100;
+        scoreText.text = "Score: " + score.ToString();
+    }
+
+    public void OnBite(int score) {
+        score += score;
         scoreText.text = "Score: " + score.ToString();
     }
 
