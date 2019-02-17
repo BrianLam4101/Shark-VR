@@ -359,7 +359,22 @@ ModelImporter:
     2300000: node_id177
     3300000: node_id177
     4300000: node_id177
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material_66
+    second: {fileID: 2100000, guid: 389723d2f5bcd584488d1f9286036b40, type: 2}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: 571
+    second: {fileID: 2800000, guid: 0098b897ef60e524497432b42f2fdbaa, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: 575
+    second: {fileID: 2800000, guid: 14e031875f0c7204e84938b933a3a213, type: 3}
   materials:
     importMaterials: 1
     materialName: 0

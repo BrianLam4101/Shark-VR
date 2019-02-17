@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class SharkController : MonoBehaviour {
 
-    private Camera mainCamera;
+    public Camera mainCamera;
     private new Rigidbody rigidbody;
     [SerializeField]
     private float avgTime = 0.5f;
@@ -34,11 +34,38 @@ public class SharkController : MonoBehaviour {
     [SerializeField]
     private ParticleSystem SpeedLines;
 
+    [SerializeField]
+    private AudioSource audioSource;
+    [SerializeField]
+    private AudioSource music;
+
+    [SerializeField]
+    private Text scoreText;
+    private int score;
+
     public Slider debugVelocity;
+
+    [SerializeField]
+    private Slider HealthSlider;
+    private float health = 100;
+
+    public static SharkController instance;
 
     void Start() {
         mainCamera = Camera.main;
         rigidbody = GetComponent<Rigidbody>();
+        instance = this;
+        StartCoroutine(updateScore());
+        music.loop = true;
+        music.Play(0);
+    }
+
+    private IEnumerator updateScore() {
+        while (true) {
+            yield return new WaitForSeconds(1);
+            score += 100;
+            scoreText.text = "Score: " + score.ToString();
+        }
     }
 
     private void Update() {
@@ -56,6 +83,7 @@ public class SharkController : MonoBehaviour {
             dashCoolDownTimer = DashCoolDown;
         }
         dashCoolDownTimer -= Time.deltaTime;
+        HealthSlider.value = health;
     }
 
     void FixedUpdate() {
@@ -77,6 +105,7 @@ public class SharkController : MonoBehaviour {
     private IEnumerator Dash() {
         dashing = true;
         BiteAnimator.Play("Bite");
+        audioSource.Play(0);
         float initSpeed = speed;
         speed *= dashMultiplier;
         speed += 15;
@@ -102,6 +131,9 @@ public class SharkController : MonoBehaviour {
         speed += 10;
         StartCoroutine(HurtDelay());
         HurtAnimator.Play("Hurt");
+        health -= 10;
+        if (health <= 0)
+            Application.Quit();
     }
 
     private IEnumerator HurtDelay() {
@@ -117,7 +149,8 @@ public class SharkController : MonoBehaviour {
     }
 
     public void OnBite(Collider other) {
-
+        score += 100;
+        scoreText.text = "Score: " + score.ToString();
     }
 
     private class FrameRotation {

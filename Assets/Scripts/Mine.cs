@@ -9,7 +9,12 @@ public class Mine : MonoBehaviour {
 
     // Use this for initialization
     void Start() {
+        StartCoroutine(Destorytime());
+    }
 
+    private IEnumerator Destorytime() {
+        yield return new WaitForSeconds(60);
+        Destroy(gameObject);
     }
 
     // Update is called once per frame
@@ -26,6 +31,6 @@ public class Mine : MonoBehaviour {
     }
 
     private void OnTriggerExit(Collider other) {
-        Destroy(gameObject);
+        transform.position += SharkController.instance.mainCamera.transform.forward * 190;
     }
 }
