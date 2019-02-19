@@ -6,6 +6,7 @@ public class Mine : MonoBehaviour {
 
     [SerializeField]
     private GameObject explosion;
+    public float timer = 120;
 
     // Use this for initialization
     void Start() {
@@ -13,7 +14,7 @@ public class Mine : MonoBehaviour {
     }
 
     private IEnumerator Destorytime() {
-        yield return new WaitForSeconds(60);
+        yield return new WaitForSeconds(timer);
         Destroy(gameObject);
     }
 

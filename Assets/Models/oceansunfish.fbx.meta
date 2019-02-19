@@ -34,7 +34,12 @@ ModelImporter:
     4300004: oceansunfish
     4300006: node_id5
     10800000: Lamp
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material_64
+    second: {fileID: 2100000, guid: 780ca0f128d799e49b1dd5787655c740, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
